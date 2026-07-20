@@ -1,0 +1,7 @@
+{
+  "name": "clientesApp_React_Mongo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
