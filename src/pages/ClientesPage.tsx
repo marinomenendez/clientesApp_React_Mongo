@@ -17,6 +17,18 @@ export default function ClientesPage() {
         loadClients();
     }, []);
 
+  async function borrarCliente(arg0: string) {
+    console.log("borrarCliente() con id " + arg0);
+    confirm(
+      "¿Estás seguro de que deseas eliminar el cliente con ID " + arg0 + "?",
+    ) && (await ClientService.deleteClient(arg0));
+
+    //setShowToast(true);
+    //setMensajeToast("Cliente eliminado correctamente");
+
+    loadClients(); // Recargar la lista de clientes después de eliminar
+  }
+
     return (
     <IonPage>
         <IonHeader>
@@ -26,15 +38,7 @@ export default function ClientesPage() {
           </IonToolbar>
         </IonHeader>
 
-
-
         <IonContent>
-          <div className="container mt-4">
-            {/*             <IonButton onClick={() => setShowToast(true)}>
-              Mostrar Toast
-            </IonButton> */}
-
-
 
             <Link to="/new-client" className="btn btn-primary mb-3">
               <i className="bi bi-plus-circle"></i>Nuevo Cliente
@@ -45,6 +49,7 @@ export default function ClientesPage() {
                 <h2>Gestión de Clientes</h2>
               </div>
 
+            
               <table className="table table-bordered share-tech-regular">
                 <thead>
                   <tr>
@@ -64,15 +69,15 @@ export default function ClientesPage() {
                       <td>{client.facturacion}</td>
                       <td>
                         <IonButton
-                          routerLink={`/edit-client/${client._id}`}
+                          routerLink={`/${client._id}`}
                           className="action-column"
                         >
                           Editar
                         </IonButton>
                         <IonButton
-/*                           onClick={() => {
-                            borrarCliente(Number(client._id));
-                          }} */
+                          onClick={() => {
+                            borrarCliente(`/getClient/${client._id}`);
+                          }}
                           className="action-column"
                         >
                           Eliminar
@@ -82,9 +87,9 @@ export default function ClientesPage() {
                   ))}
                 </tbody>
               </table>
+            
             </div>
 
-          </div>
         </IonContent>
       </IonPage>
     );
