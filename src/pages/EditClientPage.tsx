@@ -30,14 +30,14 @@ export default function EditClientPage() {
         setClient(dato);
     }
 
-  const save = async () => {
+  const modificar = async () => {
     if (!client.nombre || !client.ciudad || !client.facturacion) {
       alert("Por favor, complete todos los campos.");
       return;
     }
 
     await ClientService.updateClient(id, client);
-    //navigate('/clients');
+    //navigate('/clients');s
     history.push("/clients");
   };
 
@@ -54,6 +54,7 @@ export default function EditClientPage() {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
+
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
@@ -61,19 +62,20 @@ export default function EditClientPage() {
           </IonToolbar>
         </IonHeader>
         <div className="card" style={{ padding: "20px", margin: "20px" }}>
-          <h2>{client.id?'Modificar Cliente':'Nuevo Cliente'}</h2>
-          <input placeholder="Nombre"
+          <h2>Modificar cliente</h2>
+          <input placeholder="Nombre" value={client.nombre}
             onChange={(e) => setClient({ ...client, nombre: e.target.value })}
           />
-          <input placeholder="Ciudad"
+          <input placeholder="Ciudad" value={client.ciudad}
             onChange={(e) => setClient({ ...client, ciudad: e.target.value })}
           />
-          <input placeholder="Facturación"
+          <input placeholder="Facturación" value={client.facturacion}
             onChange={(e) => setClient({ ...client, facturacion: Number(e.target.value) })}
           />
-          <button onClick={save}>Guardar</button>
+          <button onClick={modificar}>Modificar</button>
         </div>
       </IonContent>
+
     </IonPage>
   ); //cierra return
 }

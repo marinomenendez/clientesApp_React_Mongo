@@ -16,7 +16,7 @@ export class ClientService {
         console.log("ClientsService getClientById() : ");
         console.log(id);
 
-        const res = await fetch( "http://localhost:3000/client/"+id );
+        const res = await fetch( `${this.api_url}/${ id }` );
         return await res.json();
     }
 
@@ -39,7 +39,7 @@ export class ClientService {
 
     static async updateClient( id: string, client: Client ) {
         await fetch(
-            `${this.api_url}/${ id }`,
+            `${this.api_url}/update/${ id }`,
             {
                 method: 'PUT',
                 headers: {

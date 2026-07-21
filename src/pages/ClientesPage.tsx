@@ -19,6 +19,7 @@ export default function ClientesPage() {
 
   async function borrarCliente(arg0: string) {
     console.log("borrarCliente() con id " + arg0);
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     confirm(
       "¿Estás seguro de que deseas eliminar el cliente con ID " + arg0 + "?",
     ) && (await ClientService.deleteClient(arg0));
@@ -69,14 +70,14 @@ export default function ClientesPage() {
                       <td>{client.facturacion}</td>
                       <td>
                         <IonButton
-                          routerLink={`/${client._id}`}
+                          routerLink={`/edit-client/${client._id}`}
                           className="action-column"
                         >
                           Editar
                         </IonButton>
                         <IonButton
                           onClick={() => {
-                            borrarCliente(`/getClient/${client._id}`);
+                            borrarCliente(`${client._id}`);
                           }}
                           className="action-column"
                         >
