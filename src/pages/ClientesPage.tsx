@@ -1,4 +1,4 @@
-import { IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToast, IonToolbar, useIonViewWillEnter } from "@ionic/react";
+import { IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonViewWillEnter } from "@ionic/react";
 import { useState } from "react";
 import { Client } from "../models/Client";
 import { ClientService } from "../services/clientService";
@@ -13,29 +13,42 @@ export default function ClientesPage() {
         setClients(data);
     };
 
+    const euroFormatter = (value: number) => {
+      return new Intl.NumberFormat(
+      'es-ES',
+      {
+        style:'currency',
+        currency:'EUR'
+      }).format(value)
+    }
+
     useIonViewWillEnter(() => {
         loadClients();
     }, []);
 
-  async function borrarCliente(arg0: string) {
-    console.log("borrarCliente() con id " + arg0);
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    confirm(
-      "¿Estás seguro de que deseas eliminar el cliente con ID " + arg0 + "?",
-    ) && (await ClientService.deleteClient(arg0));
+    async function borrarCliente(arg0: string) {
+      console.log("borrarCliente() con id " + arg0);
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      confirm(
+        "¿Estás seguro de que deseas eliminar el cliente con ID " + arg0 + "?",
+      ) && (await ClientService.deleteClient(arg0));
 
-    //setShowToast(true);
-    //setMensajeToast("Cliente eliminado correctamente");
+      //setShowToast(true);
+      //setMensajeToast("Cliente eliminado correctamente");
 
-    loadClients(); // Recargar la lista de clientes después de eliminar
-  }
+      loadClients(); // Recargar la lista de clientes después de eliminar
+    }
 
     return (
     <IonPage>
         <IonHeader>
           <IonToolbar>
             <IonTitle size="large">Tabla de Clientes</IonTitle>
-
+            <IonButtons>
+              <IonButton routerLink="/">Inicio</IonButton>
+              <IonButton routerLink="/home">Home</IonButton>
+              <IonButton routerLink="/clients">Ver clientes</IonButton>
+            </IonButtons>
           </IonToolbar>
         </IonHeader>
 
@@ -54,7 +67,7 @@ export default function ClientesPage() {
               <table className="table table-bordered share-tech-regular">
                 <thead>
                   <tr>
-                    {/* <th>ID</th> */}
+                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Ciudad</th>
                     <th>Facturación</th>
@@ -64,10 +77,10 @@ export default function ClientesPage() {
                 <tbody>
                   {clients.map((client) => (
                     <tr key={client._id}>
-                      {/* <td>{client.id}</td> */}
+                      <td>{client._id}</td>
                       <td>{client.nombre}</td>
                       <td>{client.ciudad}</td>
-                      <td>{client.facturacion}</td>
+                      <td className="text-end">{ euroFormatter(client.facturacion) }</td>
                       <td>
                         <IonButton
                           routerLink={`/edit-client/${client._id}`}

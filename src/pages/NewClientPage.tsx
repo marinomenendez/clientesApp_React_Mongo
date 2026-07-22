@@ -51,12 +51,11 @@ export default function NewClientPage() {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Novedades</IonTitle>
+          <IonTitle size="large">Tabla de Clientes</IonTitle>
           <IonButtons>
             <IonButton routerLink="/">Inicio</IonButton>
             <IonButton routerLink="/home">Home</IonButton>
             <IonButton routerLink="/clients">Ver clientes</IonButton>
-            <IonButton routerLink="/nuevo">Añadir cliente</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>

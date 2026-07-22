@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Home.css';
 
@@ -7,7 +7,19 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Blank</IonTitle>
+
+          <IonTitle size="large">Aplicación de clientes con React</IonTitle>
+
+          <IonButtons slot="end">
+            <IonButton >Login</IonButton>
+            <IonButton >Logout</IonButton>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <IonButton routerLink='/'>Inicio</IonButton>
+            <IonButton routerLink={`/clients`}>Clientes</IonButton>
+            <IonButton routerLink='/new-client'>Nuevo cliente</IonButton>
+          </IonButtons>
+
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

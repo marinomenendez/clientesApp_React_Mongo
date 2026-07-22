@@ -1,4 +1,4 @@
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, useIonViewWillEnter } from "@ionic/react";
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, useIonViewWillEnter, IonToast } from "@ionic/react";
 import { useState } from "react";
 import { ClientService } from "../services/clientService";
 import { useHistory, useParams } from "react-router";
@@ -6,11 +6,10 @@ import { useHistory, useParams } from "react-router";
 
 export default function EditClientPage() {
 
-  //console.log("nuevo cliente");
-  //const navigate =useNavigate();//React Router 6
   const history = useHistory();
-  const [client, setClient] = useState({ id: "", nombre: "", ciudad: "", facturacion: 0.0 });
+  const [client, setClient] = useState({  nombre: "", ciudad: "", facturacion: 0.0 });
 
+  const [showToast, setShowToast] = useState(false);
 
   const {id}= useParams<{id: string}>();
 
@@ -36,8 +35,12 @@ export default function EditClientPage() {
       return;
     }
 
+
     await ClientService.updateClient(id, client);
-    //navigate('/clients');s
+    
+    setShowToast(true);
+
+    //navigate('/clients');
     history.push("/clients");
   };
 
@@ -50,7 +53,6 @@ export default function EditClientPage() {
             <IonButton routerLink="/">Inicio</IonButton>
             <IonButton routerLink="/home">Home</IonButton>
             <IonButton routerLink="/clients">Ver clientes</IonButton>
-            <IonButton routerLink="/nuevo">Añadir cliente</IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
@@ -61,6 +63,19 @@ export default function EditClientPage() {
             <IonTitle size="large">Mi empresa</IonTitle>
           </IonToolbar>
         </IonHeader>
+
+        <IonToast
+        isOpen={showToast}
+        onDidDismiss={() =>
+        setShowToast(false)
+        }
+        position="top"
+        message={ `Modificado correctamente cliente con ID ${id}`  }
+        duration={3000}
+        color="warning"
+        />
+        
+
         <div className="card" style={{ padding: "20px", margin: "20px" }}>
           <h2>Modificar cliente</h2>
           <input placeholder="Nombre" value={client.nombre}
