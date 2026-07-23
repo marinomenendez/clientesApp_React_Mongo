@@ -21,15 +21,17 @@ export class ClientService {
     }
 
     static async newClient(client: Client) {
-        console.log("ClientsService newClient() : ");
-        console.log(client);
+        console.log("ClientsService newClient() : ",client);
+
+        const token = localStorage.getItem("token");
 
         const res =
-            await fetch( this.api_url+"/new",
+            await fetch( `${this.api_url}/new`,
                 {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify(client)
                 }

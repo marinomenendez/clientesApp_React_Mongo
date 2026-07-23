@@ -11,7 +11,7 @@ const Home: React.FC = () => {
           <IonTitle size="large">Aplicación de clientes con React</IonTitle>
 
           <IonButtons slot="end">
-            <IonButton >Login</IonButton>
+            <IonButton routerLink='/login'>Login</IonButton>
             <IonButton >Logout</IonButton>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 

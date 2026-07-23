@@ -21,25 +21,13 @@ export default function NewClientPage() {
 
     useIonViewWillEnter(() => {
       console.log("NewClientPage.tsx useIonViewWillEnter()");
-      loadClient();
     });
     
-    const loadClient = async() => {
-        console.log("loadClient() con id "+id);
-        const dato = await ClientService.getClientById(id);
-        setClient(dato);
-    }
 
   const save = async () => {
     if (!client.nombre || !client.ciudad || !client.facturacion) {
       alert("Por favor, complete todos los campos.");
       return;
-    }
-    if (client.id) {
-        console.log("Estoy en modificacion");
-    }
-    else {
-        console.log("Estoy en alta");
     }
 
     await ClientService.newClient(client);
