@@ -2,6 +2,7 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonCon
 import { useState } from "react";
 import { ClientService } from "../services/clientService";
 import { useHistory, useParams } from "react-router";
+import NavBar from "../components/NavBar";
 
 
 export default function NewClientPage() {
@@ -37,16 +38,11 @@ export default function NewClientPage() {
 
   return (
     <IonPage>
+
       <IonHeader>
-        <IonToolbar>
-          <IonTitle size="large">Tabla de Clientes</IonTitle>
-          <IonButtons>
-            <IonButton routerLink="/">Inicio</IonButton>
-            <IonButton routerLink="/home">Home</IonButton>
-            <IonButton routerLink="/clients">Ver clientes</IonButton>
-          </IonButtons>
-        </IonToolbar>
+            <NavBar/>
       </IonHeader>
+
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
@@ -54,7 +50,7 @@ export default function NewClientPage() {
           </IonToolbar>
         </IonHeader>
         <div className="card" style={{ padding: "20px", margin: "20px" }}>
-          <h2>{client.id?'Modificar Cliente':'Nuevo Cliente'}</h2>
+          <h2>Nuevo cliente</h2>
           <input placeholder="Nombre"
             onChange={(e) => setClient({ ...client, nombre: e.target.value })}
           />

@@ -2,6 +2,7 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonCon
 import { useState } from "react";
 import { ClientService } from "../services/clientService";
 import { useHistory, useParams } from "react-router";
+import NavBar from "../components/NavBar";
 
 
 export default function EditClientPage() {
@@ -46,15 +47,9 @@ export default function EditClientPage() {
 
   return (
     <IonPage>
+
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Novedades</IonTitle>
-          <IonButtons>
-            <IonButton routerLink="/">Inicio</IonButton>
-            <IonButton routerLink="/home">Home</IonButton>
-            <IonButton routerLink="/clients">Ver clientes</IonButton>
-          </IonButtons>
-        </IonToolbar>
+        <NavBar/>
       </IonHeader>
 
       <IonContent fullscreen>

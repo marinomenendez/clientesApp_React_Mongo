@@ -40,12 +40,15 @@ export class ClientService {
     }
 
     static async updateClient( id: string, client: Client ) {
+        const token = localStorage.getItem("token");
+
         await fetch(
             `${this.api_url}/update/${ id }`,
             {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(client)
             }
@@ -53,9 +56,13 @@ export class ClientService {
     }
 
     static async deleteClient(id: string) {
+        const token = localStorage.getItem("token");
         await fetch( `${this.api_url}/delete/${ id }`,
         {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         }
         );
     }

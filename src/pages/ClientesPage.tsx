@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Client } from "../models/Client";
 import { ClientService } from "../services/clientService";
 import { Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
 
 export default function ClientesPage() {    
 
@@ -41,15 +42,9 @@ export default function ClientesPage() {
 
     return (
     <IonPage>
+
         <IonHeader>
-          <IonToolbar>
-            <IonTitle size="large">Tabla de Clientes</IonTitle>
-            <IonButtons>
-              <IonButton routerLink="/">Inicio</IonButton>
-              <IonButton routerLink="/home">Home</IonButton>
-              <IonButton routerLink="/clients">Ver clientes</IonButton>
-            </IonButtons>
-          </IonToolbar>
+              <NavBar/>
         </IonHeader>
 
         <IonContent>

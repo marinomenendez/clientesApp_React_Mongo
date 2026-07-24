@@ -36,6 +36,9 @@ import ClientesPage from './pages/ClientesPage';
 import NewClientPage from './pages/NewClientPage';
 import EditClientPage from './pages/EditClientPage';
 import LoginPage from './pages/LoginPage';
+import ProtectedRoute from './components/ProtectedRoute';
+import NewUserPage from './pages/NewUserPage';
+import ClientesPagePruebaSwipe from './pages/ClientesPagePruebaSwipe';
 
 setupIonicReact();
 
@@ -48,16 +51,30 @@ const App: React.FC = () => (
           path="/clients"
           component={ClientesPage}
         />
+
+        <Route
+          exact
+          path="/clientsSwipe"
+          component={ClientesPagePruebaSwipe}
+        />
+
         <Route
           exact
           path="/new-client"
           component={NewClientPage}
         />
 
-        <Route
+{/*         <Route
           exact
           path="/edit-client/:id"
           component={EditClientPage}
+        /> */}
+        <ProtectedRoute path="/edit-client/:id" component={EditClientPage} exact />
+
+        <Route
+          exact
+          path="/users"
+          component={NewUserPage}
         />
 
         <Route exact path="/home">
