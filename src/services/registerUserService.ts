@@ -1,5 +1,7 @@
+import { url } from "../config/mongo";
+
     
-    const API_URL = 'http://localhost:3000';
+    const API_URL = url;
 
     export const registerNewUser = async ( email: string, password: string, role: string ) => {
 

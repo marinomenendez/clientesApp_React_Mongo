@@ -2,7 +2,9 @@
 
 //export class AuthService {
 
-    const API_URL = 'http://localhost:3000';
+import { url } from "../config/mongo";
+
+    const API_URL = url;
 
     export const login = async ( email: string, password: string ) => {
 

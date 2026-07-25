@@ -1,13 +1,14 @@
+import { url } from "../config/mongo";
 import { Client } from "../models/Client";
 
 export class ClientService {    
 
-    static api_url = "http://localhost:3000/clients";
+    static api_url = url;
 
     static async getClients() {
         const res =
-            await fetch( this.api_url
-                //${ API_URL } / clients
+            await fetch( `${this.api_url}/clients`
+                //
             );
         return await res.json();
     }
@@ -16,7 +17,7 @@ export class ClientService {
         console.log("ClientsService getClientById() : ");
         console.log(id);
 
-        const res = await fetch( `${this.api_url}/${ id }` );
+        const res = await fetch( `${this.api_url}/clients/${ id }` );
         return await res.json();
     }
 
@@ -26,7 +27,7 @@ export class ClientService {
         const token = localStorage.getItem("token");
 
         const res =
-            await fetch( `${this.api_url}/new`,
+            await fetch( `${this.api_url}/clients/new`,
                 {
                     method: 'POST',
                     headers: {
@@ -43,7 +44,7 @@ export class ClientService {
         const token = localStorage.getItem("token");
 
         await fetch(
-            `${this.api_url}/update/${ id }`,
+            `${this.api_url}/clients/update/${ id }`,
             {
                 method: 'PUT',
                 headers: {
@@ -57,7 +58,7 @@ export class ClientService {
 
     static async deleteClient(id: string) {
         const token = localStorage.getItem("token");
-        await fetch( `${this.api_url}/delete/${ id }`,
+        await fetch( `${this.api_url}/clients/delete/${ id }`,
         {
             method: 'DELETE',
             headers: {

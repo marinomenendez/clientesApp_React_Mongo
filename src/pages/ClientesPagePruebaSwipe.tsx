@@ -1,10 +1,10 @@
 import { IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonPage, useIonViewWillEnter } from "@ionic/react";
+import { add } from "ionicons/icons";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import NavBar from "../components/NavBar";
 import { Client } from "../models/Client";
 import { ClientService } from "../services/clientService";
-import { add } from "ionicons/icons";
-import NavBar from "../components/NavBar";
-import { Link, useHistory } from "react-router-dom";
 
 export default function ClientesPagePruebaSwipe() {    
 
